@@ -30,5 +30,4 @@ const LogoutModal = ({ isOpen, onClose, onLogout }) => {
     </div>
   );
 };
-
 export default LogoutModal; 
