@@ -98,10 +98,10 @@
 }
 
 @media (max-width: 768px) {
-  .stats-container {
+  /* .stats-container {
     grid-template-columns: 1fr;
     gap: 16px;
-  }
+  } */
   
   .stat-card {
     padding: 16px;
