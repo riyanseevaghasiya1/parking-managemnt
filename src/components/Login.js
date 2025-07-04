@@ -68,7 +68,6 @@ const Login = () => {
                 <div className="error-message">{errors.email}</div>
               )}
             </div>
-
             <PasswordInput
               label="Password*"
               name="password"
@@ -95,5 +94,4 @@ const Login = () => {
     </FormContainer>
   );
 };
-
 export default Login;

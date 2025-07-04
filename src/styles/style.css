@@ -7,7 +7,9 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+  .container-fluid{
+    padding: 0;
+  }
   .app-container {
     min-height: 100vh;
     background-color: #000;
@@ -29,8 +31,11 @@ body {
   .form-container {
     width: 100%;
     max-width: 500px;
-    height: 450px;
+    /* height: 450px; */
+    height: auto;
     margin: 0 auto auto auto;
+    /* margin: auto; */
+    /* transform: translateX(50%); */
     background-color: white;
     border-radius: 4px;
     padding: 40px;
