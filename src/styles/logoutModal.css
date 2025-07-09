@@ -17,7 +17,7 @@
   width: 100%;
   max-width: 400px;
   position: relative;
-  padding: 30px;
+  /* padding: 10px; */
 }
 
 .logout-modal-header {
@@ -45,7 +45,7 @@
 }
 
 .logout-modal-body {
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
 }
 
 .logout-modal-body p {

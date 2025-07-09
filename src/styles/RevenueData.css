@@ -214,7 +214,7 @@
       text-align: center;
     }
     .calendar-nav {
-      flex-direction: column;
+      /* flex-direction: column; */
       gap: 5px;
     }
     .calendar-month {
@@ -222,6 +222,9 @@
     }
     .transactions-list {
       max-height: 250px;
+    }
+    .r_top{
+      margin-bottom: 20px !important;
     }
   }
   @media (max-width: 576px) {
