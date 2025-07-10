@@ -63,7 +63,8 @@ const RevenueAnalytics = () => {
   };
 
   return (
-    <Container fluid className="revenue-analytics-container p-3">
+    <div className='r_top'>
+      <Container fluid className="revenue-analytics-container p-3">
       <div className="analytics-header">
         <div className="d-flex justify-content-between align-items-start">
           <div>
@@ -139,6 +140,7 @@ const RevenueAnalytics = () => {
         </ResponsiveContainer>
       </div>
     </Container>
+    </div>
   );
 };
 

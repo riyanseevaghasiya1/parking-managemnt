@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/changePassword.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
+
 const ChangePassword = ({ isOpen, onClose }) => {
   const [passwords, setPasswords] = useState({
     oldPassword: '',
@@ -45,14 +46,14 @@ const ChangePassword = ({ isOpen, onClose }) => {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
-        <div className='mb-3'>
-        <button className="close-button" onClick={onClose}>×</button>
+        <div className='text-end'>
+          <button className="close-button" onClick={onClose}>×</button>
         </div>
         <div className="r_title">
           <p>Change Password</p>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='r_form'>
           <p className='mb-0 r_text'>Old Password*</p>
           <div className="password-input-group">
             <div className="password-field">
@@ -63,9 +64,9 @@ const ChangePassword = ({ isOpen, onClose }) => {
                 onChange={handleChange}
                 required
               />
-         
-              <button 
-                type="button" 
+
+              <button
+                type="button"
                 className="toggle-password"
                 onClick={() => togglePasswordVisibility('old')}
               >
@@ -74,7 +75,7 @@ const ChangePassword = ({ isOpen, onClose }) => {
             </div>
 
             <div className="password-field">
-            <p className='mb-0 r_text'>New Password*</p>  
+              <p className='mb-0 r_text'>New Password*</p>
               <input
                 type={showPasswords.new ? "text" : "password"}
                 name="newPassword"
@@ -82,8 +83,8 @@ const ChangePassword = ({ isOpen, onClose }) => {
                 onChange={handleChange}
                 required
               />
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="toggle-password"
                 onClick={() => togglePasswordVisibility('new')}
               >
@@ -92,7 +93,7 @@ const ChangePassword = ({ isOpen, onClose }) => {
             </div>
 
             <div className="password-field">
-            <p className='mb-0 r_text'>Confirm New Password*</p>  
+              <p className='mb-0 r_text'>Confirm New Password*</p>
               <input
                 type={showPasswords.confirm ? "text" : "password"}
                 name="confirmPassword"
@@ -100,8 +101,8 @@ const ChangePassword = ({ isOpen, onClose }) => {
                 onChange={handleChange}
                 required
               />
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="toggle-password"
                 onClick={() => togglePasswordVisibility('confirm')}
               >
@@ -110,10 +111,10 @@ const ChangePassword = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {passwords.newPassword !== passwords.confirmPassword && 
+          {passwords.newPassword !== passwords.confirmPassword &&
             passwords.confirmPassword && (
               <p >Both password must match</p>
-          )}
+            )}
 
           <button type="submit" className="change-password-button">
             Change Password

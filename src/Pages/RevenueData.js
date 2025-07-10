@@ -88,7 +88,7 @@ const RevenueData = () => {
               </Row>
             </Card.Body>
           </Card>
-          <RevenueAnalytics />
+          <RevenueAnalytics  />
         </Col>
 
         <Col lg={4}>
