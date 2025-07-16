@@ -13,6 +13,8 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import '../styles/ParkingDashboard.css'
+import '../components/ParkingOverview';
+import ParkingOverview from '../components/ParkingOverview';
 
 // Register ChartJS components
 ChartJS.register(
@@ -134,7 +136,7 @@ const ParkingDashboard = () => {
 
         {/* Parking Overview Chart */}
         <Col lg={6} md={12} className="mb-3 mb-lg-0">
-          <Card className="dashboard-card h-100" style={{ marginLeft: "10px", marginRight: "10px" }}>
+          {/* <Card className="dashboard-card h-100" style={{ marginLeft: "10px", marginRight: "10px" }}>
             <Card.Body>
               <h5 className="card-title">Parking Overview</h5>
               <div className="chart-container">
@@ -163,8 +165,9 @@ const ParkingDashboard = () => {
                 </div>
               </div>
             </Card.Body>
-          </Card>
-        </Col>
+          </Card> */}
+          <ParkingOverview/> 
+          </Col>
 
         {/* Vehicle Volume Circle Chart */}
         <Col lg={3} md={12}>
@@ -352,5 +355,4 @@ const ParkingDashboard = () => {
     </Container>
   );
 };
-
 export default ParkingDashboard;

@@ -52,13 +52,11 @@ const ParkingOverview = () => {
              }}
            />
          </div>
-         
-       </div>
+        </div>
           ))}
-        </Col>
+      </Col>
       </Row>
     </Card>
   );
 };
-
 export default ParkingOverview;
