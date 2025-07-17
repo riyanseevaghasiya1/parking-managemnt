@@ -14,7 +14,10 @@ import {
 import { Bar } from 'react-chartjs-2';
 import '../styles/ParkingDashboard.css'
 import '../components/ParkingOverview';
+import '../components/VehicleVolume';
 import ParkingOverview from '../components/ParkingOverview';
+import VehicleVolume from '../components/VehicleVolume';
+import ModernParkingLayout from '../components/ModernParkingLayout';
 
 // Register ChartJS components
 ChartJS.register(
@@ -171,7 +174,7 @@ const ParkingDashboard = () => {
 
         {/* Vehicle Volume Circle Chart */}
         <Col lg={3} md={12}>
-          <Card className="dashboard-card h-100">
+          {/* <Card className="dashboard-card h-100">
             <Card.Body>
               <h5 className="card-title">Vehicle Volume</h5>
               <div className="doughnut-container">
@@ -189,167 +192,15 @@ const ParkingDashboard = () => {
                 </div>
               </div>
             </Card.Body>
-          </Card>
+          </Card> */}
+          <VehicleVolume/>
         </Col>
       </Row>
 
       {/* Parking Layout */}
       <Row>
         <Col xs={12}>
-          <Card className="dashboard-card parking-layout-card">
-            <Card.Body>
-              {/* Level Tabs */}
-              <div className="level-tabs">
-                {[1, 2, 3, 4, 5].map((level) => (
-                  <button
-                    key={level}
-                    className={`level-tab ${activeLevel === level ? 'active' : ''}`}
-                    onClick={() => setActiveLevel(level)}
-                  >
-                    Level {level}
-                  </button>
-                ))}
-              </div>
-
-              {/* Parking Layout - updated to show all levels side by side */}
-              <div className="parking-layout-container">
-                {/* Left Side Entry/Exit */}
-                <div className="entry-exit-left">
-                  <div className="entry-label">ENTRY</div>
-                  <div className="exit-label">EXIT</div>
-                </div>
-
-                {/* Parking Grids - All Levels Side by Side */}
-                <div className="all-parking-levels">
-                  {/* Level 1 */}
-                  <div className="parking-section">
-                    <div className="parking-column a-column">
-                      {['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10'].map((spot) => (
-                        <div
-                          key={`1-${spot}`}
-                          className={`parking-spot ${parkingLevels[1].filledSpots.includes(spot) ? 'filled' : ''}`}
-                        >
-                          {spot}
-                        </div>
-                      ))}
-                    </div>
-                    <div className="parking-column b-column">
-                      {['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10'].map((spot) => (
-                        <div
-                          key={`1-${spot}`}
-                          className={`parking-spot ${parkingLevels[1].filledSpots.includes(spot) ? 'filled' : ''}`}
-                        >
-                          {spot}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Level 2 */}
-                  <div className="parking-section">
-                    <div className="parking-column a-column">
-                      {['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10'].map((spot) => (
-                        <div
-                          key={`2-${spot}`}
-                          className={`parking-spot ${parkingLevels[2].filledSpots.includes(spot) ? 'filled' : ''}`}
-                        >
-                          {spot}
-                        </div>
-                      ))}
-                    </div>
-                    <div className="parking-column b-column">
-                      {['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10'].map((spot) => (
-                        <div
-                          key={`2-${spot}`}
-                          className={`parking-spot ${parkingLevels[2].filledSpots.includes(spot) ? 'filled' : ''}`}
-                        >
-                          {spot}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Level 3 */}
-                  <div className="parking-section">
-                    <div className="parking-column a-column">
-                      {['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10'].map((spot) => (
-                        <div
-                          key={`3-${spot}`}
-                          className={`parking-spot ${parkingLevels[3].filledSpots.includes(spot) ? 'filled' : ''}`}
-                        >
-                          {spot}
-                        </div>
-                      ))}
-                    </div>
-                    <div className="parking-column b-column">
-                      {['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10'].map((spot) => (
-                        <div
-                          key={`3-${spot}`}
-                          className={`parking-spot ${parkingLevels[3].filledSpots.includes(spot) ? 'filled' : ''}`}
-                        >
-                          {spot}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Level 4 */}
-                  <div className="parking-section">
-                    <div className="parking-column a-column">
-                      {['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10'].map((spot) => (
-                        <div
-                          key={`4-${spot}`}
-                          className={`parking-spot ${parkingLevels[4].filledSpots.includes(spot) ? 'filled' : ''}`}
-                        >
-                          {spot}
-                        </div>
-                      ))}
-                    </div>
-                    <div className="parking-column b-column">
-                      {['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10'].map((spot) => (
-                        <div
-                          key={`4-${spot}`}
-                          className={`parking-spot ${parkingLevels[4].filledSpots.includes(spot) ? 'filled' : ''}`}
-                        >
-                          {spot}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Level 5 */}
-                  <div className="parking-section">
-                    <div className="parking-column a-column">
-                      {['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10'].map((spot) => (
-                        <div
-                          key={`5-${spot}`}
-                          className={`parking-spot ${parkingLevels[5].filledSpots.includes(spot) ? 'filled' : ''}`}
-                        >
-                          {spot}
-                        </div>
-                      ))}
-                    </div>
-                    <div className="parking-column b-column">
-                      {['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10'].map((spot) => (
-                        <div
-                          key={`5-${spot}`}
-                          className={`parking-spot ${parkingLevels[5].filledSpots.includes(spot) ? 'filled' : ''}`}
-                        >
-                          {spot}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right Side Entry/Exit */}
-                <div className="entry-exit-right">
-                  <div className="entry-label">ENTRY</div>
-                  <div className="exit-label">EXIT</div>
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
+         <ModernParkingLayout/>
         </Col>
       </Row>
     </Container>

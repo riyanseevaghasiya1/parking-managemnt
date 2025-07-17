@@ -1,0 +1,219 @@
+/* ModernParkingLayout.css */
+.modern-parking-layout-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+}
+
+.modern-level-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  border-radius: 8px;
+  padding: 4px 8px;
+  margin-bottom: 30px;
+  min-width: 400px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.modern-level-tab {
+  background: #000;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 8px 28px;
+  font-size: 16px;
+  border-radius: 6px;
+  margin: 0 2px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.modern-level-tab.active {
+  background: #fff;
+  color: #000;
+}
+
+.modern-parking-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+}
+
+.modern-entry-exit {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 60px;
+  min-width: 60px;
+  padding: 0 0;
+}
+
+.modern-entry-exit.left {
+  align-items: flex-start;
+}
+
+.modern-entry-exit.right {
+  align-items: flex-end;
+}
+
+.entry-label {
+  color: #28a745;
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.exit-label {
+  color: #dc3545;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.parking-section {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.modern-parking-grid {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: none;
+  padding: 0 20px;
+  gap: 0;
+}
+
+.modern-parking-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modern-parking-spot {
+  background: #f4f6f8;
+  color: #222;
+  border-radius: 6px;
+  height: 38px;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.modern-parking-spot.filled {
+  background: #181818;
+  color: #fff;
+}
+
+.modern-dashed-divider {
+  width: 0;
+  border-left: 2px dashed #888;
+  margin: 0 18px;
+  height: 100%;
+  min-height: 420px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .modern-parking-layout {
+    max-width: 100vw;
+    padding: 0 10px;
+  }
+  .modern-parking-spot {
+    width: 60px;
+    height: 35px;
+    font-size: 14px;
+  }
+  .modern-dashed-divider {
+    margin: 0 12px;
+  }
+}
+
+@media (max-width: 900px) {
+  .modern-parking-spot {
+    width: 54px;
+    height: 32px;
+    font-size: 13px;
+  }
+  .modern-dashed-divider {
+    min-height: 340px;
+    margin: 0 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .modern-level-tabs {
+    min-width: 0;
+    max-width: 100vw;
+    flex-wrap: wrap;
+    padding: 2px 2px;
+  }
+  .modern-level-tab {
+    font-size: 13px;
+    padding: 6px 10px;
+    margin: 1px;
+  }
+  .modern-parking-layout {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+  .modern-entry-exit {
+    flex-direction: row;
+    width: 100%;
+    min-width: 0;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+  .modern-entry-exit.left, .modern-entry-exit.right {
+    align-items: center;
+  }
+  .modern-parking-grid {
+    flex-direction: row;
+    padding: 0 2px;
+    overflow-x: auto;
+  }
+  .modern-parking-col {
+    gap: 7px;
+  }
+  .modern-dashed-divider {
+    min-height: 0;
+    height: 100%;
+    margin: 0 4px;
+  }
+}
+
+@media (max-width: 400px) {
+  .modern-parking-spot {
+    width: 38px;
+    height: 22px;
+    font-size: 10px;
+  }
+  .modern-level-tabs {
+    padding: 0;
+  }
+  .modern-dashed-divider {
+    margin: 0 2px;
+  }
+}
