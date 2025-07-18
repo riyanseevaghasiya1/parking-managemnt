@@ -82,7 +82,7 @@
 }
 
 /* Chart Styles */
-.chart-container {
+/* .chart-container {
   height: 190px;
   position: relative;
   margin: 10px 0;
@@ -113,10 +113,10 @@
 .legend-label {
   font-size: 12px;
   color: #6c757d;
-}
+} */
 
 /* Doughnut Chart */
-.doughnut-container {
+/* .doughnut-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -152,7 +152,7 @@
 .doughnut-total {
   font-size: 14px;
   color: #6c757d;
-}
+} */
 
 /* Parking Layout - Updated for side by side display */
 .parking-layout-card {
