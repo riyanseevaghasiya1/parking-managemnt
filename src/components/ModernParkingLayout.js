@@ -140,7 +140,6 @@ const ModernParkingLayout = () => {
             </div>
           </div>
         </div>
-        
         <div className="modern-entry-exit right">
           <span className="entry-label">ENTRY</span>
           <span className="exit-label">EXIT</span>
