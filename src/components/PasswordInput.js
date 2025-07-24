@@ -44,5 +44,4 @@ const PasswordInput = ({
     </div>
   );
 };
-
 export default PasswordInput;

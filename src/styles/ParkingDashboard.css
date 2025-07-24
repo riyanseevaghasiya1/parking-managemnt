@@ -231,7 +231,7 @@
   /* Minimum width for each section */
   padding: 0 5px;
   position: relative;
-  border-left: 1px dashed #ddd;
+  /* border-left: 1px dashed #ddd; */
   /* Vertical dotted line separator */
 }
 

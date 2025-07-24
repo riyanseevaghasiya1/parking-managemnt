@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import Login from './components/Login';
 import ForgotPassword from './components/ForgotPassword';
 import OTPVerification from './components/OTPVerification';
-import ChangePassword from './components/ChangePassword';
+import ChangePasswordPage from './components/ChangePasswordPage.js';
 import Dashboard from '../src/Pages/Dashboard';
 import Profile from '../src/Pages/Profile';
 import Layout from './components/Layout';
@@ -36,7 +36,7 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/otp-verification" element={<OTPVerification />} />
-              <Route path="/change-password" element={<ChangePassword />} />
+              <Route path="/change-password" element={<ChangePasswordPage/>} />
               {/* Protected Routes with Layout */}
               <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
                 <Route path="/dashboard" element={<Dashboard />} />
