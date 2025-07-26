@@ -109,11 +109,12 @@
 }
 
 /* Media query for small devices */
-@media screen and (max-width: 768px) {
+@media screen and (max-width:1024PX) {
   .menu-button {
     display: block; /* Show menu button on small screens */
   }
-  
+}
+@media screen and (max-width: 768px) {
   .search-container {
     flex: 1;
     margin-left: 0;

@@ -60,8 +60,8 @@ const VehicleVolume = () => {
 
             {/* Center text */}
             <div className="position-absolute d-flex flex-column justify-content-center align-items-center">
-              <div className="fw-bold">{current}</div>
-              <div className="text-muted small">/{total}</div>
+              <div >{current}/</div>
+              <div className="small">{total}</div>
             </div>
           </div>
         </div>
