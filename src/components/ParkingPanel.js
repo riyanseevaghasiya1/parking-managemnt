@@ -8,12 +8,12 @@ const ParkingPanel = () => {
         <h6 className="mb-4 fw-semibold fs-6">Parking</h6>
         <Row className="align-items-center justify-content-center">
           <Col xs={6} className='border-end'>
-            <p className="mb-3">Short Time</p>
+            <p className="mb-3"style={{fontSize:"15px", fontWeight:"bold"}}>Short Time</p>
             <h3 className="fw-bold mb-3">165</h3>
             <p className="text-muted small mb-0">Booked Today</p>
           </Col>
           <Col xs={6}>
-            <p className=" mb-3">Long Time</p>
+            <p className=" mb-3"style={{fontSize:"15px", fontWeight:"bold"}}>Long Time</p>
             <h3 className="fw-bold mb-3">55</h3>
             <p className="text-muted small mb-0">Booked Today</p>
           </Col>
