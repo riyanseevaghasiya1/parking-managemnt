@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container } from 'react-bootstrap';
-import { FaArrowUp } from 'react-icons/fa';
+import { FaArrowTrendUp } from "react-icons/fa6";
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/RevenueAnalytics.css';
@@ -71,9 +71,9 @@ const RevenueAnalytics = () => {
             <h2 className="revenue-title">Revenue Analytics</h2>
             <div className="metrics-container">
               <div className="metric-box">
-                <div className="metric-label">Today</div>
+                <div className="metric-labelone">Today</div>
                 <div className="metric-value">
-                  <FaArrowUp className="arrow-up" /> $4520
+                  <FaArrowTrendUp className="arrow-up" /> $4520
                 </div>
               </div>
               <div className="metric-box ml-4">
