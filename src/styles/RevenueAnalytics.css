@@ -33,7 +33,9 @@
     color: #666;
     margin-bottom: 4px;
   }
-  
+  .metric-labelone{
+    color: #000;
+  }
   .metric-value {
     font-size: 16px;
     font-weight: 500;
@@ -42,7 +44,7 @@
   }
   
   .arrow-up {
-    color: #28a745;
+    /* color: #28a745; */
     margin-right: 5px;
     font-size: 12px;
   }
