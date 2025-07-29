@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, Badge,  Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap';
 import { FaCarSide, FaTruck, FaMotorcycle } from 'react-icons/fa';
 import { FaPlus } from "react-icons/fa";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,30 +7,41 @@ import '../styles/RevenueData.css';
 import RevenueAnalytics from '../components/RevenueAnalytics';
 
 const RevenueData = () => {
- 
+  const [currentDate, setCurrentDate] = useState(new Date(2024, 8)); // Sep 2024
+  const [activeDay, setActiveDay] = useState(null);
 
   const generateCalendarDays = () => {
     const days = [];
-    const date = new Date(2024, 8); // September 2024
-    const lastDay = new Date(2024, 9, 0).getDate(); // Last day of September
-    const firstDayOfWeek = new Date(2024, 8, 1).getDay() || 7; // Day of week (0 = Sunday)
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
 
-    for (let i = 0; i < firstDayOfWeek - 1; i++) {
-      days.push({ day: new Date(2024, 7, 31 - i).getDate(), current: false });
+    const firstDay = new Date(year, month, 1);
+    const firstWeekday = (firstDay.getDay() || 7) - 1; // Adjust so Mon=0
+    const lastDate = new Date(year, month + 1, 0).getDate();
+
+    for (let i = firstWeekday - 1; i >= 0; i--) {
+      const d = new Date(year, month, -i);
+      days.push({ day: d.getDate(), current: false });
     }
-    days.reverse();
 
-    for (let i = 1; i <= lastDay; i++) {
+    for (let i = 1; i <= lastDate; i++) {
       days.push({ day: i, current: true });
     }
 
-    const remainingDays = 42 - days.length;
-    for (let i = 1; i <= remainingDays; i++) {
-      days.push({ day: i, current: false });
+    while (days.length % 7 !== 0) {
+      const d = new Date(year, month + 1, days.length - lastDate + 1);
+      days.push({ day: d.getDate(), current: false });
     }
 
     return days;
   };
+
+  const changeMonth = (offset) => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + offset));
+    setActiveDay(null); // Reset active day on month change
+  };
+
+  const getMonthName = (date) => date.toLocaleString('default', { month: 'long', year: 'numeric' });
 
   const calendarDays = generateCalendarDays();
 
@@ -44,14 +55,10 @@ const RevenueData = () => {
 
   const getVehicleIcon = (type) => {
     switch (type) {
-      case 'car':
-        return <FaCarSide size={20} />;
-      case 'truck':
-        return <FaTruck size={20} />;
-      case 'motorcycle':
-        return <FaMotorcycle size={20} />;
-      default:
-        return <FaCarSide size={20} />;
+      case 'car': return <FaCarSide size={20} />;
+      case 'truck': return <FaTruck size={20} />;
+      case 'motorcycle': return <FaMotorcycle size={20} />;
+      default: return <FaCarSide size={20} />;
     }
   };
 
@@ -65,7 +72,7 @@ const RevenueData = () => {
               <Row>
                 <Col md={4}>
                   <div className="revenue-summary">
-                    <h4 className="mb-0 ">Total</h4>
+                    <h4 className="mb-0">Total</h4>
                     <h4 className='r_margin'>Revenue</h4>
                     <h1 className="mt-2 mb-1">₹ 21,596</h1>
                     <Badge className="revenue-badge">
@@ -74,7 +81,7 @@ const RevenueData = () => {
                   </div>
                 </Col>
                 <Col md={4} className="r_col1">
-                  <div className="transaction-summary ">
+                  <div className="transaction-summary">
                     <h5>Online Transactions</h5>
                     <h3>₹ 3214</h3>
                   </div>
@@ -88,7 +95,7 @@ const RevenueData = () => {
               </Row>
             </Card.Body>
           </Card>
-          <RevenueAnalytics  />
+          <RevenueAnalytics />
         </Col>
 
         <Col lg={4}>
@@ -98,9 +105,9 @@ const RevenueData = () => {
               <div className="calendar-header">
                 <div className="d-flex justify-content-between align-items-center mb-2">
                   <div className="calendar-nav">
-                    <span className="calendar-nav-btn">&lt;</span>
-                    <span className="calendar-month">September 2024</span>
-                    <span className="calendar-nav-btn">&gt;</span>
+                    <span className="calendar-nav-btn" onClick={() => changeMonth(-1)}>&lt;</span>
+                    <span className="calendar-month">{getMonthName(currentDate)}</span>
+                    <span className="calendar-nav-btn" onClick={() => changeMonth(1)}>&gt;</span>
                   </div>
                 </div>
 
@@ -111,12 +118,13 @@ const RevenueData = () => {
                     ))}
                   </div>
                   <div className="calendar-days">
-                    {calendarDays.map((day, index) => (
+                    {calendarDays.map((dayObj, index) => (
                       <div
                         key={index}
-                        className={`calendar-day ${!day.current ? 'other-month' : ''} ${day.day === 20 ? 'active-day' : ''}`}
+                        className={`calendar-day ${!dayObj.current ? 'other-month' : ''} ${dayObj.day === activeDay ? 'active-day' : ''}`}
+                        onClick={() => dayObj.current && setActiveDay(dayObj.day)}
                       >
-                        {day.day}
+                        {dayObj.day}
                       </div>
                     ))}
                   </div>
@@ -132,9 +140,7 @@ const RevenueData = () => {
               <div className="transactions-list">
                 {recentTransactions.map((transaction) => (
                   <div key={transaction.id} className="transaction-item">
-                    <div className="transaction-icon">
-                      {getVehicleIcon(transaction.vehicleType)}
-                    </div>
+                    <div className="transaction-icon">{getVehicleIcon(transaction.vehicleType)}</div>
                     <div className="transaction-details">
                       <div className="transaction-plate">{transaction.plateNumber}</div>
                       <div className="transaction-duration text-muted small">{transaction.duration}</div>

@@ -101,31 +101,34 @@
   }
   
   .calendar-day {
-    text-align: center;
-    padding: 8px 0;
-    font-size: 0.9rem;
-    border-radius: 50%;
-    cursor: pointer;
-    height: 32px;
-    width: 32px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .calendar-day:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .calendar-day.active-day {
-    background-color: #000;
-    color: #fff;
-  }
-  
-  .calendar-day.other-month {
-    color: #ccc;
-  }
+  text-align: center;
+  padding: 8px 0;
+  font-size: 0.9rem;
+  border-radius: 6px; /* ← changed from 50% */
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.calendar-day:hover {
+  background-color: #eaeaea;
+}
+
+.calendar-day.active-day {
+  background-color: #000 !important;
+  color: #fff;
+  border-radius: 6px; /* Square */
+}
+
+.calendar-day.other-month {
+  color: #ccc;
+}
+
   
   /* Transactions */
   .transactions-list {
@@ -231,9 +234,9 @@
     .dashboard-container {
       padding: 0 2px;
     }
-    .card {
+    /* .card {
       padding: 0 !important;
-    }
+    } */
     .revenue-summary h1 {
       font-size: 1.5rem;
     }

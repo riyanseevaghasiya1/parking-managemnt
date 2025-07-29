@@ -7,7 +7,7 @@
 
 .profile-title {
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 600;
   color: #111;
   margin: 10px 0 20px 10px;
 }
@@ -75,7 +75,7 @@
 }
 
 .save-button {
-  padding: 8px 25px;
+  padding: 8px 35px;
   background-color: #000;
   color: #fff;
   border: none;

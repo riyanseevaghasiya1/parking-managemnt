@@ -1,42 +1,72 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import FormContainer from './FormContainer';
 import PasswordInput from './PasswordInput';
 import { loginSchema } from '../utils/validationSchemas';
-import { useAuth } from '../contexts/AuthContext';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (values) => {
+    setLoading(true);
+    setError('');
+    
+    
     try {
-      // Here you would typically make an API call to verify credentials
-      // For demo purposes, we'll use a simple check
-      if (values.email === 'admin@example.com' && values.password === 'admin123') {
-        const userData = {
-          email: values.email,
-          name: 'Admin User',
-          role: 'admin'
-        };
+      const response = await axios.post('http://localhost:3000/api/Admin/loginAdmin', {
+        email: values.email,
+        password: values.password
+      });
+
+
+      // Check if login was successful
+      if (response.data && response.data.success) {
+        // Store user data in localStorage (without token)
+        if (response.data.admin) {
+          localStorage.setItem('userData', JSON.stringify(response.data.admin));
+        }
         
-        // Login the user
-        login(userData);
+        // Show success message (optional)
+        console.log('Login successful:', response.data.message);
         
         // Redirect to dashboard
         navigate('/dashboard');
       } else {
-        setError('Invalid email or password');
+        setError(response.data.message || 'Login failed. Please try again.');
       }
     } catch (err) {
-      setError('An error occurred during login. Please try again.');
+      console.error('Login error:', err);
+      
+      // Handle different types of errors
+      if (err.response) {
+        // Server responded with error status
+        if (err.response.status === 401) {
+          setError('Invalid email or password');
+        } else if (err.response.status === 404) {
+          setError('User not found');
+        } else if (err.response.status === 500) {
+          setError('Server error. Please try again later.');
+        } else {
+          setError(err.response.data.message || 'Login failed. Please try again.');
+        }
+      } else if (err.request) {
+        // Network error
+        setError('Network error. Please check your connection and try again.');
+      } else {
+        // Other error
+        setError('An unexpected error occurred. Please try again.');
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <FormContainer ainer>
+    <FormContainer>
       <div className="form-header">
         <h2>Login</h2>
         <p>Welcome!</p>
@@ -63,11 +93,13 @@ const Login = () => {
                 name="email"
                 className="form-control"
                 placeholder="Enter your email"
+                disabled={loading}
               />
               {errors.email && touched.email && (
                 <div className="error-message">{errors.email}</div>
               )}
             </div>
+            
             <PasswordInput
               label="Password*"
               name="password"
@@ -77,16 +109,17 @@ const Login = () => {
               error={errors.password}
               touched={touched.password}
               placeholder="Enter your password"
+              disabled={loading}
             />
 
             <div className="form-bottom">
-              <Link to="/forgot-password" className="form-link" style={{marginBottom:"20px" }}>
+              <Link to="/forgot-password" className="form-link" style={{marginBottom:"20px"}}>
                 Forgot password?
               </Link>
             </div>
 
-            <button type="submit" className="form-btn">
-              Login
+            <button type="submit" className="form-btn" disabled={loading}>
+              {loading ? 'Logging in...' : 'Login'}
             </button>
           </Form>
         )}
@@ -94,4 +127,5 @@ const Login = () => {
     </FormContainer>
   );
 };
+
 export default Login;

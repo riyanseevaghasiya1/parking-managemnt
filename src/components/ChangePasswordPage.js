@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import FormContainer from './FormContainer';
 import PasswordInput from './PasswordInput';
 import { changePasswordSchema } from '../utils/validationSchemas';
-import { useAuth } from '../contexts/AuthContext';
 
 const ChangePassword = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -19,44 +18,77 @@ const ChangePassword = () => {
     setIsLoading(true);
     
     try {
-      // Here you would typically make an API call to change password
-      // For demo purposes, we'll simulate the API call
+      // Get user data from localStorage to get adminId
+      const userData = localStorage.getItem('userData');
+      if (!userData) {
+        setError('User not found. Please login again.');
+        navigate('/login');
+        return;
+      }
       
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const user = JSON.parse(userData);
+      const adminId = user.id || user._id; // Handle different ID field names
       
-      // You would make actual API call here like:
-      // const response = await changePasswordAPI({
-      //   currentPassword: values.currentPassword,
-      //   newPassword: values.newPassword,
-      //   userId: user.id
-      // });
+      if (!adminId) {
+        setError('Admin ID not found. Please login again.');
+        navigate('/login');
+        return;
+      }
+
+      // Make API call to change password
+      const response = await axios.post(
+        `http://localhost:3000/api/Admin/changePassword?adminId=${adminId}`,
+        {
+          currentPassword: values.currentPassword,
+          newPassword: values.newPassword,
+          confirmPassword: values.confirmPassword
+        }
+      );
       
-      // For demo, we'll assume success
-      const mockResponse = { success: true };
-      
-      if (mockResponse.success) {
-        setSuccess('Password changed successfully! You will be redirected to login.');
+      // Check if change password was successful
+      if (response.data && response.data.success) {
+        setSuccess(response.data.message || 'Password changed successfully! You will be redirected to login.');
         resetForm();
+        
+        // Clear user data from localStorage since password changed
+        localStorage.removeItem('userData');
         
         // Redirect to login after 2 seconds
         setTimeout(() => {
           navigate('/login');
         }, 2000);
+        
+        console.log('Password change successful:', response.data.message);
       } else {
-        setError('Failed to change password. Please try again.');
+        setError(response.data.message || 'Failed to change password. Please try again.');
       }
       
     } catch (err) {
+      console.error('Change password error:', err);
+      
       // Handle different types of errors
-      if (err.message.includes('Current password is incorrect')) {
-        setError('Current password is incorrect. Please try again.');
-      } else if (err.message.includes('Password requirements')) {
-        setError('New password does not meet requirements.');
-      } else if (err.message.includes('Network error')) {
-        setError('Network error. Please check your connection and try again.');
+      if (err.response) {
+        // Server responded with error status
+        if (err.response.status === 400) {
+          setError(err.response.data.message || 'Invalid password requirements. Please check your input.');
+        } else if (err.response.status === 401) {
+          setError('Current password is incorrect. Please try again.');
+        } else if (err.response.status === 404) {
+          setError('Admin not found. Please login again.');
+          setTimeout(() => navigate('/login'), 1500);
+        } else if (err.response.status === 422) {
+          setError('Passwords do not match. Please check and try again.');
+        } else if (err.response.status === 500) {
+          setError('Server error. Please try again later.');
+        } else {
+          setError(err.response.data.message || 'Failed to change password. Please try again.');
+        }
+      } else if (err.request) {
+        // Network error
+        setError('Network error. Please check your internet connection and try again.');
       } else {
-        setError(err.message || 'An error occurred while changing password. Please try again.');
+        // Other error
+        setError('An unexpected error occurred. Please try again.');
       }
     } finally {
       setIsLoading(false);
@@ -94,7 +126,17 @@ const ChangePassword = () => {
       >
         {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
           <Form>
-            
+            <PasswordInput
+              label="Current Password*"
+              name="currentPassword"
+              value={values.currentPassword}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.currentPassword}
+              touched={touched.currentPassword}
+              placeholder="Enter your current password"
+              disabled={isLoading}
+            />
 
             <PasswordInput
               label="New Password*"
@@ -140,8 +182,6 @@ const ChangePassword = () => {
           </Form>
         )}
       </Formik>
-
-     
     </FormContainer>
   );
 };
