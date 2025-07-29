@@ -1,0 +1,180 @@
+/* login system css*/
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .container-fluid{
+    padding: 0;
+  }
+  .app-container {
+    min-height: 100vh;
+    background-color: #000;
+    /* color: white; */
+  }
+  
+  .form-page {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    object-fit: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-image: url('../assets/images/background.png');
+  }
+  
+  .form-container {
+    width: 100%;
+    max-width: 500px;
+    /* height: 450px; */
+    height: auto;
+    margin: 0 auto auto auto;
+    /* margin: auto; */
+    /* transform: translateX(50%); */
+    background-color: white;
+    border-radius: 4px;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-header {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .form-header h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  
+  .form-header p {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+  }
+  
+  .form-title {
+    color: white;
+    text-align: center;
+    margin: auto 0 2rem 0;
+    font-size: 24px;
+  }
+  
+  .custom-form-control {
+    margin-bottom: 15px;
+  }
+  
+  .custom-form-control label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+  }
+  .form-control{
+    background-color: #F1F5F9;
+  }
+  
+  .error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .form-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 30px;
+  }
+  
+  .form-btn:hover {
+    background-color: #333;
+  }
+  
+  .form-link {
+    color: #dc3545;
+    text-decoration: none;
+    font-size: 14px;
+    
+    }
+  
+  .form-link:hover {
+    text-decoration: underline;
+  }
+  
+  .form-bottom {
+    text-align: right;
+    margin-top: 10px;
+  }
+  
+  .password-input-container {
+    position: relative;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #777;
+  }
+  
+  .otp-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px 0;
+  }
+  
+  .otp-input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #F1F5F9;
+  }
+  
+  .resend-link {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .resend-text {
+    color: #666;
+    font-size: 14px;
+  }
+@media screen and (max-width: 425px) {
+ .container-fluid{
+  padding: 0px;
+ }
+ .form-container{
+  max-width: 350px;
+  padding: 20px;
+}
+.form-title{
+  font-size: 18px;
+}
+}
+@media screen and (max-width: 320px){
+  .form-container{
+    max-width: 300px;
+  }
+}
+
+

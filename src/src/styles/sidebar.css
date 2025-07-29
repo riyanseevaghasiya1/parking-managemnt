@@ -1,0 +1,76 @@
+.sidebar-nav {
+  /* padding: 1rem 0; */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: calc(100vh - 80px); /* Account for logo container */
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.875rem 1.5rem;
+  color: black;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-item:hover {
+  color: black;
+  background-color: rgba(13, 110, 253, 0.05);
+  border-left-color: #0d6efd;
+}
+
+.nav-item.active {
+  color: black;
+  background-color: #F1F5F9;
+  border-left:4px solid black;
+  border-right:4px solid black;
+  font-weight: 500;
+}
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.nav-label {
+  font-size: 0.9375rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .nav-item {
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 1.25rem;
+  }
+
+  .nav-label {
+    font-size: 1rem;
+  }
+}
+
+/* Small screen adjustments */
+@media (max-width: 480px) {
+  .sidebar-nav {
+    height: calc(100vh - 70px);
+  }
+
+  .nav-item {
+    padding: 1rem 1.25rem;
+  }
+} 
